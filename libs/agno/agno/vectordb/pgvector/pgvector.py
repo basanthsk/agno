@@ -683,7 +683,7 @@ class PgVector(VectorDb):
             elif self.distance == Distance.cosine:
                 # For cosine distance, smaller distances are better
                 vector_distance = self.table.c.embedding.cosine_distance(query_embedding)
-                vector_score = 1 / (1 + vector_distance)
+                vector_score = 1 - vector_distance
             elif self.distance == Distance.max_inner_product:
                 # For inner product, higher values are better
                 # Assume embeddings are normalized, so inner product ranges from -1 to 1
